@@ -19,4 +19,11 @@ class Question < ApplicationRecord
     .where('tags.id = any (array[?])', tags)
     .where(section_id: 2)
   end
+
+  def self.find_exposures(tags)
+    select(:id, :text)
+    .joins(:tags)
+    .where('tags.id = any (array[?])', tags)
+    .where(section_id: 3)
+  end
 end
