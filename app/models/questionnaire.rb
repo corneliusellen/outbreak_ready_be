@@ -4,4 +4,8 @@ class Questionnaire < ApplicationRecord
   has_many :questions, through: :questionnaire_questions
   has_many :intakes
   has_many :tags, through: :intakes
+
+  def find_questions
+    questions
+  end
 end
