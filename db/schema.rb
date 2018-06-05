@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180604194328) do
+ActiveRecord::Schema.define(version: 20180605231343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20180604194328) do
     t.bigint "tag_id"
     t.index ["questionnaire_id"], name: "index_intakes_on_questionnaire_id"
     t.index ["tag_id"], name: "index_intakes_on_tag_id"
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string "dish"
+    t.string "ingredients"
+    t.bigint "questionnaire_id"
+    t.index ["questionnaire_id"], name: "index_menu_items_on_questionnaire_id"
   end
 
   create_table "options", force: :cascade do |t|
@@ -71,6 +78,7 @@ ActiveRecord::Schema.define(version: 20180604194328) do
 
   add_foreign_key "intakes", "questionnaires"
   add_foreign_key "intakes", "tags"
+  add_foreign_key "menu_items", "questionnaires"
   add_foreign_key "options", "tags"
   add_foreign_key "questionnaire_questions", "questionnaires"
   add_foreign_key "questionnaire_questions", "questions"

@@ -1,5 +1,5 @@
 class MenuSerializer < ActiveModel::Serializer
-  attributes :name, :foods
+  attributes :id, :name, :foods
 
   def foods
     object.foods.flatten
