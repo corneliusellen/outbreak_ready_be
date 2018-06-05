@@ -6,8 +6,7 @@ describe 'Questionnnaire API' do
 
     patch '/api/v1/questionnaires/1', :headers => headers
 
-    result = JSON.parse(response.body)
     expect(response).to be_success
-
+    expect(Questionnaire.find(1).questions.count).to eq(4)
   end
 end
