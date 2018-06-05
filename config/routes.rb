@@ -7,6 +7,8 @@ Rails.application.routes.draw do
         get '/clinicals', to: 'clinicals#index'
         get '/exposures', to: 'exposures#index'
         get '/questions', to: 'questions#index'
+        get '/foods', to: 'foods#index'
+        post '/foods', to: 'foods#create'
       end
       get '/tags', to: 'tags#index'
       namespace :search do
