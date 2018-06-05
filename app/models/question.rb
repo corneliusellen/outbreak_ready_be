@@ -12,4 +12,11 @@ class Question < ApplicationRecord
     .where('tags.id = any (array[?])', tags)
     .where(section_id: 1)
   end
+
+  def self.find_clinicals(tags)
+    select(:id, :text)
+    .joins(:tags)
+    .where('tags.id = any (array[?])', tags)
+    .where(section_id: 2)
+  end
 end
