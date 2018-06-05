@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'Search API' do
   it 'Sends menus for specified restaurant' do
-    params = {venue_id: '4dc2d699d22dd7df9ab25063'}
-    get "/api/v1/search/menus", params: params
+    headers = { 'CONTENT-TYPE' => 'application/json', 'HTTP_VENUE_ID' => '4dc2d699d22dd7df9ab25063' }
+    get "/api/v1/search/menus", headers: headers
 
     result = JSON.parse(response.body)
 
