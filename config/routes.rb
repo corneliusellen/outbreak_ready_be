@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         get '/demographics', to: 'demographics#index'
         get '/clinicals', to: 'clinicals#index'
         get '/exposures', to: 'exposures#index'
+        get '/questions', to: 'questions#index'
       end
       get '/tags', to: 'tags#index'
       namespace :search do
