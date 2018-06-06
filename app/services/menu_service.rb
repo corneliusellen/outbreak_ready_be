@@ -12,6 +12,7 @@ class MenuService
 
   def fetch
     response = Faraday.get("https://api.foursquare.com/v2/venues/#{@venue_id}/menu?client_id=#{ENV['FOURSQUARE_CLIENT_ID']}&client_secret=#{ENV['FOURSQUARE_CLIENT_SECRET']}&&v=20180323")
+    puts response.body
     menus = JSON.parse(response.body)["response"]["menu"]["menus"]["items"]
     parse_menus(menus)
   end
