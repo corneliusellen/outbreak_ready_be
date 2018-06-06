@@ -20,10 +20,10 @@ class Question < ApplicationRecord
     .where(section_id: 2)
   end
 
-  def self.find_exposures(tags)
-    select(:id, :text)
+  def self.find_exposures
+    select('questions.id, questions.text, JSON_AGG(tags.id) as all_tags')
     .joins(:tags)
-    .where('tags.id = any (array[?])', tags)
     .where(section_id: 3)
+    .group('questions.id')
   end
 end
