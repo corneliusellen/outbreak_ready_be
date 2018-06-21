@@ -10,12 +10,16 @@ options_data = CSV.open('./db/data/options.csv', headers: true, header_converter
 
 sections = ["Demographic", "Clinical", "Exposure"]
 
+QuestionnaireQuestion.destroy_all
+Intake.destroy_all
 Option.destroy_all
 Tagging.destroy_all
 Tag.destroy_all
 Category.destroy_all
 Question.destroy_all
 Section.destroy_all
+MenuItem.destroy_all
+Questionnaire.destroy_all
 
 def seed_categories(category_data)
   ActiveRecord::Base.connection.reset_pk_sequence!(:categories)
@@ -49,11 +53,29 @@ def seed_questions(question_data)
                     section_id: question[:category])
     3.times do |i|
       if i == 0
-        Tagging.create!(tag_id: question[:tag1], question_id: q.id, association_tag_id: question[:association1], association_tag_id_2: question[:association2])
+        tags = question[:tag1].split(',') rescue next
+        tag_id_1 = tags[0]
+        tag_id_2 = tags[1]
+        tag_id_3 = tags[2]
+        Tagging.create!(tag_id: tag_id_1, question_id: q.id, classification: 1)
+        Tagging.create!(tag_id: tag_id_2, question_id: q.id, classification: 1) rescue next
+        Tagging.create!(tag_id: tag_id_3, question_id: q.id, classification: 1) rescue next
       elsif i == 1
-        Tagging.create!(tag_id: question[:tag2], question_id: q.id) rescue next
+        tags = question[:tag2].split(',') rescue next
+        tag_id_1 = tags[0]
+        tag_id_2 = tags[1]
+        tag_id_3 = tags[2]
+        Tagging.create!(tag_id: tag_id_1, question_id: q.id, classification: 2)
+        Tagging.create!(tag_id: tag_id_2, question_id: q.id, classification: 2) rescue next
+        Tagging.create!(tag_id: tag_id_3, question_id: q.id, classification: 2) rescue next
       else
-        Tagging.create!(tag_id: question[:tag3], question_id: q.id) rescue next
+        tags = question[:tag3].split(',') rescue next
+        tag_id_1 = tags[0]
+        tag_id_2 = tags[1]
+        tag_id_3 = tags[2]
+        Tagging.create!(tag_id: tag_id_1, question_id: q.id, classification: 3)
+        Tagging.create!(tag_id: tag_id_2, question_id: q.id, classification: 3) rescue next
+        Tagging.create!(tag_id: tag_id_3, question_id: q.id, classification: 3) rescue next
       end
     end
   end
