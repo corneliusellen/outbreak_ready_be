@@ -21,7 +21,7 @@ class Question < ApplicationRecord
   end
 
   def self.find_exposures
-    select('questions.id, questions.text, JSON_AGG(tags.id) as all_tags')
+    select('questions.id, questions.text, JSON_AGG(tags.id) as all_tags, JSON_AGG(taggings.classification) as all_classifications')
     .joins(:tags)
     .where(section_id: 3)
     .group('questions.id')
