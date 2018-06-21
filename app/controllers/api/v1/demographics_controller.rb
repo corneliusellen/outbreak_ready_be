@@ -1,9 +1,10 @@
 class Api::V1::DemographicsController < ApplicationController
+  before_action :identify_questionnaire_tags
+  before_action  do
+    filter_questions(1)
+  end
 
   def index
-    questionnaire = Questionnaire.find(params[:questionnaire_id])
-    tags = questionnaire.tags.map {|tag| tag.id}
-    tags.push(25)
-    render json: Question.find_demographics(tags)
+    render json: @filtered
   end
 end
