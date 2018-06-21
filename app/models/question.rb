@@ -6,24 +6,11 @@ class Question < ApplicationRecord
   has_many :taggings
   has_many :tags, through: :taggings
 
-  def self.find_demographics(tags)
-    select(:id, :text)
+  def self.find_questions_with(section_id)
+    select('questions.id, questions.text,
+            JSON_AGG(tags.id) as all_tags, JSON_AGG(taggings.classification) as all_classifications')
     .joins(:tags)
-    .where('tags.id = any (array[?])', tags)
-    .where(section_id: 1)
-  end
-
-  def self.find_clinicals(tags)
-    select(:id, :text)
-    .joins(:tags)
-    .where('tags.id = any (array[?])', tags)
-    .where(section_id: 2)
-  end
-
-  def self.find_exposures
-    select('questions.id, questions.text, JSON_AGG(tags.id) as all_tags, JSON_AGG(taggings.classification) as all_classifications')
-    .joins(:tags)
-    .where(section_id: 3)
+    .where("section_id = ?", section_id)
     .group('questions.id')
   end
 end
