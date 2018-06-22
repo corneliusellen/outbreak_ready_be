@@ -20,8 +20,8 @@ The frontend repository for this project can be found [here](https://github.com/
 * ```GET /api/v1/questionnaires/:questionnaire_id/clinicals``` Sends clinical questions for associated questionnaire.
 * ```GET /api/v1/questionnaires/:questionnaire_id/exposures``` Sends exposure questions for associated questionnaire.
 * ```GET /api/v1/questionnaires/:questionnaire_id/questions``` Sends selected questions for associated questionnaire.
-* ```POST /api/v1/questionnaires/:questionnaire_id/foods``` Creates Menu Items for associated questionnaire.
-* ```GET /api/v1/questionnaires/:questionnaire_id/foods``` Sends Menu Item for associated questionnaire.
+* ```POST /api/v1/questionnaires/:questionnaire_id/foods``` Creates Menu Items for associated questionnaire specified in header.
+* ```GET /api/v1/questionnaires/:questionnaire_id/foods``` Sends Menu Items for associated questionnaire specified in header.
 #### Tags Endpoint
 * ```GET /api/v1/tags``` Sends all tags.
 #### Restaurant Search Enpoints
