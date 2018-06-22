@@ -1,24 +1,12 @@
-# README
+# Outbreak READY
+The frontend repository for this project can be found [here](https://github.com/corneliusellen/outbreak).
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Schema
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
+## Endpoints
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Author
+Ellen Cornelius. Check out my website at [ellencornelius.com](https://www.ellencornelius.com/).
