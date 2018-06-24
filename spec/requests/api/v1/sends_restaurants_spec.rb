@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe 'Search API' do
+  before :each do
+    @user = create(:user)
+    allow_any_instance_of(ApplicationController).to receive(:authenticate_request).and_return(@user)
+  end
+  
   it 'Sends only restaurants matching query' do
     params = {near: 'denver', query: 'linger'}
     get "/api/v1/search/restaurants", params: params

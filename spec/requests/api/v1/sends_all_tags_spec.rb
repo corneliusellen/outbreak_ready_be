@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe 'Intake API' do
+  before :each do
+    @user = create(:user)
+    allow_any_instance_of(ApplicationController).to receive(:authenticate_request).and_return(@user)
+  end
+  
   it "sends categories with tags" do
     get '/api/v1/tags'
 

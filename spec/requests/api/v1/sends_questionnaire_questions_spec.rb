@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe 'Questionnnaire API' do
+  before :each do
+    @user = create(:user)
+    allow_any_instance_of(ApplicationController).to receive(:authenticate_request).and_return(@user)
+  end
+  
   it "sends questionnaire questions questions" do
     QuestionnaireQuestion.create(questionnaire_id: 1, question_id: 1)
     QuestionnaireQuestion.create(questionnaire_id: 1, question_id: 2)
