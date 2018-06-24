@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  before_action :authenticate_request
+  attr_reader :current_user
 
   def identify_questionnaire_tags
     questionnaire = Questionnaire.find(params[:questionnaire_id])
@@ -27,5 +29,12 @@ class ApplicationController < ActionController::API
       @tags.include?(tag[1][1]) ||
       @tags.include?(tag[1][2])
     end
+  end
+
+  private
+
+  def authenticate_request
+    @current_user = AuthorizeApiRequest.call(request.headers).result
+    render json: {error: 'Not Authorized'}, status: 401 unless @current_user
   end
 end
