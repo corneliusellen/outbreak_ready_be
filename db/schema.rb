@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180624202845) do
+ActiveRecord::Schema.define(version: 20180625022009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20180624202845) do
 
   create_table "questionnaires", force: :cascade do |t|
     t.string "title"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_questionnaires_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -89,6 +91,7 @@ ActiveRecord::Schema.define(version: 20180624202845) do
   add_foreign_key "options", "tags"
   add_foreign_key "questionnaire_questions", "questionnaires"
   add_foreign_key "questionnaire_questions", "questions"
+  add_foreign_key "questionnaires", "users"
   add_foreign_key "questions", "sections"
   add_foreign_key "taggings", "questions"
   add_foreign_key "taggings", "tags"
