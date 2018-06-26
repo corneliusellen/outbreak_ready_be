@@ -2,9 +2,7 @@ require 'rails_helper'
 
 describe "Authentication API" do
   it "user logs in and is sent unique JSON web token" do
-    User.create!(name: "Ellen", email: "ecorneli@iwu.edu", password: "123", password_confirmation: "123")
-
-    params = {email: "ecorneli@iwu.edu", password: "123"}
+    params = {email: "ecorneli@iwu.edu", password: "12345"}
     post '/api/v1/authenticate', params: params
 
     result = JSON.parse(response.body)

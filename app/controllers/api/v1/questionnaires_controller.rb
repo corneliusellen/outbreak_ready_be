@@ -1,7 +1,17 @@
 class Api::V1::QuestionnairesController < ApplicationController
 
+  def index
+    questionnaires = @current_user.questionnaires
+    render json: questionnaires
+  end
+
   def create
-    Questionnaire.create!(title: "Test 2")
+    questionnaire = Questionnaire.new(title: "Test", user_id: @current_user.id)
+    if questionnaire.save
+      render json: {questionnaire_id: questionnaire.id}
+    else
+      render json: {error: 'questionnaire could not be created'}, status: 401
+    end
   end
 
   def update

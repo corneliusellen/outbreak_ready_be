@@ -20,6 +20,7 @@ Question.destroy_all
 Section.destroy_all
 MenuItem.destroy_all
 Questionnaire.destroy_all
+User.destroy_all
 
 def seed_categories(category_data)
   ActiveRecord::Base.connection.reset_pk_sequence!(:categories)
@@ -90,8 +91,13 @@ def seed_options(options_data)
   end
 end
 
+def create_admin
+  ActiveRecord::Base.connection.reset_pk_sequence!(:users)
+  User.create!(name: 'admin', email: 'ecorneli@iwu.edu', password: '12345')
+end
+
 def seed_questionnaires
-  Questionnaire.create!(id: 1, title: "Demo questionnaire")
+  Questionnaire.create!(id: 1, title: "Demo questionnaire", user_id: 1)
   puts "#{Questionnaire.count} questionnaire created"
 end
 
@@ -100,4 +106,5 @@ seed_tags(tags_data)
 seed_sections(sections)
 seed_questions(questions_data)
 seed_options(options_data)
+create_admin
 seed_questionnaires
