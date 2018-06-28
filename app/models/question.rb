@@ -13,4 +13,11 @@ class Question < ApplicationRecord
     .where("section_id = ?", section_id)
     .group('questions.id')
   end
+
+  def self.universal_not_included(ids_array)
+    select('questions.id, questions.text')
+    .joins(:tags)
+    .where("tags.id = 25")
+    .where("questions.id NOT IN (?)", ids_array)
+  end
 end

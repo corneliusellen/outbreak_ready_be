@@ -26,6 +26,7 @@ class Api::V1::QuestionnairesController < ApplicationController
     questionnaire = Questionnaire.find(params[:id])
     questionnaire.intakes.destroy_all
     questionnaire.questions.destroy_all
+    questionnaire.menu_items.destroy_all
     questionnaire.destroy
     render status: 201
   end

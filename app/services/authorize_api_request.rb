@@ -27,6 +27,6 @@ class AuthorizeApiRequest
       return headers['Authorization'].split(' ').last
     else
       errors.add(:token, 'Missing token')
-    end 
+    end
   end
 end
