@@ -12,8 +12,9 @@ Rails.application.routes.draw do
         get '/exposures', to: 'exposures#index'
         get '/questions', to: 'questions#index'
         get '/foods', to: 'foods#index'
+        get '/universal', to: 'universal#index'
       end
-      
+
       namespace :search do
         get '/restaurants', to: 'restaurants#index'
         get '/menus', to: 'menus#index'
